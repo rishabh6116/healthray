@@ -1,0 +1,4 @@
+{
+  "rewrites": [{ "source": "/fetch", "destination": "/api/fetch" }],
+  "functions": { "api/fetch.py": { "maxDuration": 60 } }
+}
