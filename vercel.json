@@ -1,4 +1,29 @@
 {
-  "rewrites": [{ "source": "/fetch", "destination": "/api/fetch" }],
-  "functions": { "api/fetch.py": { "maxDuration": 60 } }
+  "rewrites": [
+    {
+      "source": "/fetch",
+      "destination": "/api/fetch"
+    },
+    {
+      "source": "/((?!api/|assets/|.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "functions": {
+    "api/fetch.py": {
+      "maxDuration": 60
+    },
+    "api/cases.py": {
+      "maxDuration": 60
+    },
+    "api/send.py": {
+      "maxDuration": 60
+    },
+    "api/bill.py": {
+      "maxDuration": 30
+    },
+    "api/patients.py": {
+      "maxDuration": 60
+    }
+  }
 }

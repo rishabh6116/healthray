@@ -38,13 +38,18 @@ class handler(BaseHTTPRequestHandler):
                     "order": order,
                 }
                 url = API + "?" + urllib.parse.urlencode(q, safe=",")
-                r = urllib.request.Request(url, headers={
+                hdrs = {
                     "Authorization": "Bearer " + req.get("token", ""),
                     "Accept": "application/json",
                     "Origin": "https://lab.healthray.com",
                     "Referer": "https://lab.healthray.com/",
                     "User-Agent": "Mozilla/5.0",
-                })
+                }
+                # shared login tokens from the sidebar (x-auth-token, x-device-token, x-healthray-access-token)
+                for k, v in (req.get("headers") or {}).items():
+                    if str(k).lower().startswith("x-") and v:
+                        hdrs[str(k)] = str(v)
+                r = urllib.request.Request(url, headers=hdrs)
                 try:
                     with urllib.request.urlopen(r, timeout=50) as resp:
                         body = json.loads(resp.read().decode("utf-8", "ignore"))
