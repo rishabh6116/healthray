@@ -289,6 +289,14 @@ button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
   tr{break-inside:avoid}
   .of{padding:8px 12px 10px;font-size:11px}
   .empty{box-shadow:none;border:1px solid var(--line)}
+  /* A4 print width (<900px) was triggering the mobile table rules (min-width:760px + nowrap),
+     pushing Payment/Total columns off the page. Reset them for print. */
+  .tbl table,.tt table{min-width:0!important;width:100%!important;table-layout:auto}
+  .tbl th,.tbl td,.tt th,.tt td{white-space:normal!important}
+  .tbl td:nth-child(5),.tbl td.ad{min-width:0!important}
+  .tbl th:nth-last-child(-n+2),.tbl td:nth-last-child(-n+2){white-space:nowrap!important}
+  .tbl th,.tbl td{padding-left:6px;padding-right:6px}
+  .tbl.tw,.tw,.tt{overflow:visible!important}
 }
 /* send report additions */
 [hidden]{display:none!important}.fn{text-transform:none!important}.m .v{min-height:27px}
