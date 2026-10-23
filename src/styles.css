@@ -252,7 +252,8 @@ button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 /* print / PDF */
 .phead{display:none}
 @media print{
-  @page{size:A4;margin:12mm}
+  @page{size:A4;margin:12mm 12mm 16mm;
+    @bottom-right{content:"Page " counter(page) " of " counter(pages);font:600 10px/1 system-ui,Arial,sans-serif;color:#555;vertical-align:top;padding-top:4mm}}
   :root{--bg:#fff;--card:#fff;--fill:#f4f4f6;--fill2:#e9e9ee;--text:#111;--muted:#555;--line:#d4d4d8;
     --ok-bg:#e3f8e9;--ok:#1a7f37;--bad-bg:#ffe5e3;--bad:#c62828;--sh:none;--range:#e8f1ff}
   html,body{background:#fff!important;color:#111}
